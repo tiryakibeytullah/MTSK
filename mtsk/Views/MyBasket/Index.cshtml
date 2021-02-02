@@ -1,0 +1,503 @@
+﻿@model mtsk.ViewModel.MyBasketViewModel
+
+<html lang="tr">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Sepetim - MTSK</title>
+    <link rel="shortcut icon" href="~/ico/mask.ico">
+    <!-- Bootstrap Cdn -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <!-- Main Css dosyaları, projenin içerisinde olanlar -->
+    <link rel="stylesheet" type="text/css" href="~/css/sepetimCSS/style.css">
+    <!-- Font Awasome Cdn -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+          integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+          crossorigin="anonymous" />
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a href="/Home/Index" class="navbar-brand">MTSK</a>
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav ml-auto">
+                    <span class="text-white mt-2">Hoşgeldiniz</span>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @Session["name"]
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="nav-link dropdown-item" href="/MyProfile/Index">Profilim</a>
+                        </div>
+                    </li>
+                    <span class="text-white mt-2">|</span>
+                    <li class="nav-item">
+                        @Html.ActionLink("ÇIKIŞ", "SessionRemove", "Home", new { @class = "nav-link text-white" })
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    @using (Html.BeginForm("OrderComplete", "MyBasket", FormMethod.Post, new { @id = "btnSubmit" }))
+    {
+         <div class="container" id="sepetContainer">
+            <div class="row">
+                <div class="col-md-9 mb-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5><i class="fas fa-shopping-basket"></i> Sepetim</h5>
+                        </div>
+                        <div class="card-body">
+                            @if (@Model.getBasketResponseMessage.data.siparisData.Count < 1)
+                            {
+                                <div class="text-center">
+                                    <div class="features-top">
+                                        <h1><i class="fas fa-exclamation-circle"></i></h1>
+                                        <h5 class="mt-3">Sepette ürün yok</h5>
+                                    </div>
+                                    <p >
+                                        Sepetinizi doldurmak için anasayafaya gidebilirsiniz.
+                                    </p>
+                                </div>
+                            }
+                            else
+                            {
+                                foreach (var x in @Model.getBasketResponseMessage.data.siparisData)
+                                {
+                                    <div class="row">
+                                        <div id="imgDiv" class="col-md-2">
+                                            <img src="~/img/maskeResmi.jpg" alt="Maske Resmi"
+                                                 style="width: 100px; height: 100px;">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div id="siparisAdi">Maske</div>
+                                            <div id="satici"><span>Satıcı : </span>MTSK</div>
+                                            <div id="adet"><span>Adet : </span>@x.TEMPORDERPIECE</div>
+                                            @Html.ActionLink(" ", "Delete", "MyBasket", new { deleteId = x.TEMPORDERID }, new { @class = "fas fa-trash-alt text-danger" })
+                                        </div>
+                                        <div class="col">
+                                            <div id="siparisTutari">@x.TEMPORDERPRICE TL</div>
+                                            <div id="kargoDiv"><i id="kargoDiv" class="fas fa-truck"></i> Ücretsiz Kargo</div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div id="siparisOzet">
+                        <div class="card">
+                            <div class="card-header">
+                                <h6>Sipariş Özeti</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-7">Ürün Toplamı : </div>
+                                    <div class="col-md-5">@ViewBag.totalPiece ADET</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-7">Kargo : </div>
+                                    <div class="col-md-5">Ücretsiz</div>
+                                </div>
+                                <hr>
+                                <div class="row" id="odenecekTutar">
+                                    <div class="col-md-7">Ödenecek Tutar : </div>
+                                    <div class="col-md-5">@ViewBag.totalPrice TL</div>
+                                </div>
+                                <div class="row mt-3">
+                                    @*orderCompleteRequestMessage*@
+                                    <button type="submit" class="form-control btn btn-outline-primary">
+                                        Siparişi
+                                        Tamamla
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5><i class="fas fa-money-check-alt"></i> Ödeme Yöntemleri</h5>
+                        </div>
+                        <div class="card-body">
+                            <!-- Adres seçimi için olan kart -->
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <label for="" class="col-form-label">Adres seçiniz :</label>
+                                    </div>
+                                    <div class="col-md-4 text-right mt-2">
+                                        <a href="#!" data-toggle="modal" data-target="#staticBackdrop"
+                                           id="yeniAdresEkleme">
+                                            <i class="far fa-plus-square" id="yeniAdresEkleme"></i>
+                                            Yeni Adres Ekle
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- Yeni adres eklemek için oluşturulan modal -->
+                                <!-- Kullanıcının kayıtlı adresleri -->
+                                <div class="row ml-1" id="adresSecenekleri">
+                                    @foreach (var x in @Model.getBasketResponseMessage.data.addressData)
+                                    {
+                                        <div class="card mr-2 mb-2">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-10">
+                                                        <!-- Kullanıcının kayıtlı adresindeki il -->
+                                                        <h5 class="card-title">@x.CITY</h5>
+                                                    </div>
+                                                    <div class="col-md-2 form-check" style="text-align: right;">
+                                                        <input class="form-check-input" type="radio" name="addressRadios" value="@(x.ADDRESSID)">
+                                                    </div>
+                                                </div>
+                                                <!-- Kullanıcının kayıtlı adresindeki ilçe -->
+                                                <h6 class="card-subtitle mb-2 text-muted">@x.DISTRICT</h6>
+                                                <!-- Kullanıcının kayıtlı adresindeki açık adres -->
+                                                <p class="card-text">@x.OPENADDRESS</p>
+                                            </div>
+                                        </div>
+                                    }
+                                    @Html.HiddenFor(x => x.orderCompleteRequestMessage.addressID, new { @id = "addressIdHidden" })
+                                </div>
+                            </div>
+                            <!-- Ödeme yöntemi için oluşturduğumuz collapse -->
+                            <div class="form-group">
+                                <label class="col-form-label">Ödeme yöntemini seçiniz :</label>
+                                <br>
+                                <div class="form-check">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="odemeRadio"
+                                               id="kapidaOdemeRadio" value="1">
+                                        <label class="form-check-label" for="kapidaOdemeRadio">Kapıda Ödeme</label>
+                                    </div>
+                                </div>
+                                <div class="form-check">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="odemeRadio"
+                                               id="onlineKrediKartıRadio" value="2" data-toggle="collapse"
+                                               data-target="#collapseOnlineKrediKartı" aria-expanded="false"
+                                               aria-controls="collapseOnlineKrediKartı">
+                                        <label class="form-check-label" for="onlineKrediKartıRadio">
+                                            Online Kredi
+                                            Kartı
+                                        </label>
+                                    </div>
+                                    <div class="collapse" id="collapseOnlineKrediKartı">
+                                        <div class="card card-body">
+                                            <!-- Kredi kartı için oluşturduğumuz form -->
+                                            <form>
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-4">
+                                                        <label for="kartNo">Kart No</label>
+                                                    </div>
+                                                    <div class="form-group col-md-2">
+                                                        <input type="text" class="form-control" id="inputEmail4"
+                                                               pattern="\d{4}"
+                                                               title="Bu input'a sadece 4 karakterli sayısal değer girilebilir">
+                                                    </div>
+                                                    <div class="form-group col-md-2">
+                                                        <input type="text" class="form-control" id="inputPassword4"
+                                                               pattern="\d{4}"
+                                                               title="Bu input'a sadece 4 karakterli sayısal değer girilebilir">
+                                                    </div>
+                                                    <div class="form-group col-md-2">
+                                                        <input type="text" class="form-control" id="inputPassword4"
+                                                               pattern="\d{4}"
+                                                               title="Bu input'a sadece 4 karakterli sayısal değer girilebilir">
+                                                    </div>
+                                                    <div class="form-group col-md-2">
+                                                        <input type="text" class="form-control" id="inputPassword4"
+                                                               pattern="\d{4}"
+                                                               title="Bu input'a sadece 4 karakterli sayısal değer girilebilir">
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-4">
+                                                        <label for="kartUzerinkiIsim">Kart Üzerindeki İsim</label>
+                                                    </div>
+                                                    <div class="form-group col-md-8">
+                                                        <input type="text" class="form-control" id="inputEmail4">
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-4">
+                                                        <label for="kartSonKullanmaTarihi">
+                                                            Son Kullanma Tarihi (Ay /
+                                                            Yıl)
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group col-md-4">
+                                                        <select name="selectList1" id="ayDropDown" class="form-control">
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                            <option value="6">6</option>
+                                                            <option value="7">7</option>
+                                                            <option value="8">8</option>
+                                                            <option value="9">9</option>
+                                                            <option value="10">10</option>
+                                                            <option value="11">11</option>
+                                                            <option value="12">12</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-md-4">
+                                                        <select name="selectList1" id="yilDropDown" class="form-control"
+                                                                placeholder="Yıl">
+                                                            <option value="1999">1999</option>
+                                                            <option value="2000">2000</option>
+                                                            <option value="2001">2001</option>
+                                                            <option value="2002">2002</option>
+                                                            <option value="2003">2003</option>
+                                                            <option value="2004">2004</option>
+                                                            <option value="2005">2005</option>
+                                                            <option value="2006">2006</option>
+                                                            <option value="2007">2007</option>
+                                                            <option value="2008">2008</option>
+                                                            <option value="2009">2009</option>
+                                                            <option value="2010">2010</option>
+                                                            <option value="2011">2011</option>
+                                                            <option value="2012">2012</option>
+                                                            <option value="2013">2013</option>
+                                                            <option value="2014">2014</option>
+                                                            <option value="2015">2015</option>
+                                                            <option value="2016">2016</option>
+                                                            <option value="2017">2017</option>
+                                                            <option value="2018">2018</option>
+                                                            <option value="2019">2019</option>
+                                                            <option value="2020">2020</option>
+                                                            <option value="2021">2021</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-4">
+                                                        <label for="kartCvc">CVC2</label>
+                                                    </div>
+                                                    <div class="form-group col-md-4">
+                                                        <input type="text" class="form-control" id="inputEmail4"
+                                                               pattern="\d{4}"
+                                                               title="Bu input'a sadece 4 karakterli sayısal değer girilebilir">
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="checkbox" id="3DCheck">
+                                                        <label class="form-check-label" for="3DCheck">
+                                                            3D Kullanmak
+                                                            istiyorum. <a href="#!">3D Nedir?</a>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="checkbox" id="MasterPassCheck">
+                                                        <label class="form-check-label" for="MasterPassCheck">
+                                                            Kredi kart
+                                                            bilgilerimin MasterPass ile kaydedilmesini istiyorum. <a href="#!">MasterPass Nedir?</a>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @Html.HiddenFor(x => x.orderCompleteRequestMessage.paymentID, new { @id = "paymentIdHidden" })
+                            <div class="form-group">
+                                <label class="col-form-label">Kargo şirketi seçiniz :</label>
+                                <br>
+                                <div class="form-group">
+                                    @{ List<SelectListItem> listItems = new List<SelectListItem>();
+                                        for (int x = 1; x <= 5; x++)
+                                        {
+                                            string realText = "";
+                                            switch (x)
+                                            {
+                                                case 1:
+                                                    realText = "UPS Kargo";
+                                                    break;
+                                                case 2:
+                                                    realText = "ARAS Kargo";
+                                                    break;
+                                                case 3:
+                                                    realText = "MNG Kargo";
+                                                    break;
+                                                case 4:
+                                                    realText = "YURTİÇİ Kargo";
+                                                    break;
+                                                case 5:
+                                                    realText = "SÜRAT Kargo";
+                                                    break;
+                                                default:
+                                                    break;
+                                            }
+                                            listItems.Add(new SelectListItem
+                                            {
+                                                Text = realText,
+                                                Value = x.ToString()
+                                            });
+                                        } }
+                                    @Html.DropDownListFor(x => x.orderCompleteRequestMessage.shipmentID, listItems, new { @class = "form-control", id= "shipmentIdHidden" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    @using (Html.BeginForm("AddAddress", "MyBasket", FormMethod.Post))
+    {
+        <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false"
+             tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Yeni Adres Ekle</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        @{ List<SelectListItem> cityAddressListItems = new List<SelectListItem>();
+                            List<SelectListItem> districtAddressListItems = new List<SelectListItem>();
+
+                            foreach (var cityItem in @Model.getAllAddressResponseMessage.data.cities)
+                            {
+                                cityAddressListItems.Add(new SelectListItem
+                                {
+                                    Text = cityItem.CityName,
+                                    Value = cityItem.CityID.ToString()
+                                });
+
+                            }
+                            foreach (var districtItem in @Model.getAllAddressResponseMessage.data.districts)
+                            {
+                                if (districtItem.CityID == 1)
+                                {
+                                    districtAddressListItems.Add(new SelectListItem
+                                    {
+                                        Text = districtItem.DistrictName,
+                                        Value = districtItem.DistrictID.ToString()
+                                    });
+                                }
+                            }
+                            <div class="form-group">
+                                <label for="ilDropDown" class="col-form-label">İl</label>
+                                @Html.DropDownListFor(x => x.addAddressRequestMessage.cityID, cityAddressListItems, new { @class = "form-control", onchange = "callChangefunc(this.value)" })
+                            </div>
+                            <div class="form-group">
+                                <label for="ilceDropDown" class="col-form-label">İlçe</label>
+                                @Html.DropDownListFor(x => x.addAddressRequestMessage.districtID, districtAddressListItems, new { @class = "form-control", id = "cityListDrop" })
+                            </div> }
+                        <div class="form-group">
+                            <label for="register-address" class="col-form-label">Açık Adres</label>
+                            @Html.TextAreaFor(x => x.addAddressRequestMessage.openAddress, new { @class = "form-control", rows = "3", cols = "200", placeholder = "Adresiniz" })
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                                data-dismiss="modal">
+                            Kapat
+                        </button>
+                        <button type="submit" class="btn btn-primary">Adres Ekle</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+     }
+
+    <!-- Footer -->
+    <footer class="mt-5 py-2 bg-dark text-white">
+        <div class="container-fluid">
+            <div class="row text-center">
+                <div class="col-md-6 mx-auto">
+                    <p>Copyright &copy; 2020 MSTK</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/jquery.js" type="text/JavaScript"></script>
+    <script src="js/bootstrap.js" type="text/JavaScript"></script>
+
+    <script src="https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js"></script>
+
+    <script>
+    $("#btnSubmit").on("submit", function (e) {
+        var addressID = $("#addressIdHidden").val();
+        var paymentID = $("#paymentIdHidden").val();
+        var shipmentID = $("#shipmentIdHidden").val();
+        console.log(addressID + " " + paymentID + " " + shipmentID);
+        e.preventDefault()
+        if (addressID != "" && paymentID != "" && shipmentID != "")
+        {
+            swal({
+                title: "Sipariş İşlemi Başarılı !",
+                text: "Ana Sayfa'ya yönlendiriliyorsunuz!",
+                icon: "success",
+                button: "Tamam",
+            }).then((value) => { e.currentTarget.submit(); });
+        }
+        else {
+            swal({
+                title: "İşlem Başarısız",
+                text: "Tüm alanları doldurduğunuzda ve sepetinizin boş olmadığından emin olun",
+                icon: "error",
+                button: "Tamam",
+            });
+        }
+    });
+
+
+
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("input:radio[name=addressRadios]").change(function () { $("#addressIdHidden").val(this.value); });
+            $("input:radio[name=odemeRadio]").change(function () { $("#paymentIdHidden").val(this.value); });
+        });
+    </script>
+
+    <script>
+        var sayilar = new Array();
+        var districtsList = @Html.Raw(Json.Encode(Model.getAllAddressResponseMessage.data.districts));
+
+        function callChangefunc(val) {
+            $("#cityListDrop option").remove();
+            for (var i = 1; i < districtsList.length; i++) {
+                if (districtsList[i].CityID == val)
+                {
+                    var opt = $("<option></option>");
+                    opt.val(districtsList[i].DistrictID);
+                    opt.text(districtsList[i].DistrictName);
+                    $("#cityListDrop").append(opt);
+                }
+            }
+        }
+    </script>
+
+</body>
+
+</html>

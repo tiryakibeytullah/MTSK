@@ -1,0 +1,638 @@
+﻿@model mtsk.ViewModel.HomeViewModel
+
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Ana Sayfa - MTSK</title>
+    <link rel="shortcut icon" href="~/ico/mask.ico">
+    <!-- Bootstrap Cdn -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <!-- Main Css dosyaları, projenin içerisinde olanlar -->
+    <link rel="stylesheet" type="text/css" href="~/css/anasayfaCSS/style.css">
+    <link rel="stylesheet" type="text/css" href="~/css/anasayfaCSS/lightbox.css">
+    <!-- Font Awasome Cdn -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+          integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+          crossorigin="anonymous" />
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a href="#" class="navbar-brand">MTSK</a>
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="#ourHistory" class="nav-link text-white"> HAKKIMIZDA </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#team" class="nav-link text-white"> TAKIMIMIZ </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#whatWeDo" class="nav-link text-white"> SİPARİŞ VER </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#portfolio" class="nav-link text-white"> GALERİ </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-link text-white"> İLETİŞİM </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            İŞLEMLER
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            @if (Session["token"] == null)
+                            {
+                <a class="nav-link dropdown-item" href="/Login/Index">Giriş Yap</a> }
+            else
+            {
+<a class="nav-link dropdown-item" href="#">@Session["name"]</a>
+                <a class="nav-link dropdown-item" href="/MyBasket/Index">Sepetim</a>
+                                <a class="nav-link dropdown-item" href="/MyProfile/Index">Profilim</a>}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Header Section -->
+    <header>
+        <div class="overlay">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col my-auto">
+                        <h1 class="display-3 text-white"><span>Maskeni Tak</span> Sağlığını Koru</h1>
+                        <p class="text-white">
+                            <i>
+                                11 Mart 2020 günü aramıza katılan Covid-19 adıyla da bilinen korona
+                                virüsü her geçen gün daha da çok çoğalarak hayatımızı alt üst etmekte. Bu virüs'ü yenmek
+                                için neden sende her insan gibi maskeni takmıyosun?
+                            </i>
+                        </p>
+                        <a href="#features" type="button"
+                           class="btn btn-outline-primary mx-auto btn-block w-25">Detaylar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Features -->
+    <section id="features">
+        <div class="container py-5 my-5">
+            <div class="row text-center my-5">
+
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="features-top">
+                        <i class="fas fa-head-side-mask"></i>
+                        <h3 class="mt-3">COVID - 19 Nedir?</h3>
+                    </div>
+                    <p>
+                        Yeni Koronavirüs Hastalığı (COVID-19), ilk olarak Çin’in Vuhan Eyaleti’nde Aralık ayının
+                        sonlarında solunum yolu belirtileri (ateş, öksürük, nefes darlığı) gelişen bir grup hastada
+                        yapılan araştırmalar sonucunda 13 Ocak 2020’de tanımlanan bir virüstür.
+                    </p>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="features-top">
+                        <i class="fas fa-american-sign-language-interpreting"></i>
+                        <h3 class="mt-3">Belirtileri Nedir?</h3>
+                    </div>
+                    <p>
+                        Belirtisiz olgular olabileceği bildirilmekle birlikte, bunların oranı bilinmemektedir. En çok
+                        karşılaşılan belirtiler ateş, öksürük ve nefes darlığıdır. Şiddetli olgularda zatürre, ağır
+                        solunum yetmezliği, böbrek yetmezliği ve ölüm gelişebilmektedir.
+                    </p>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="features-top">
+                        <i class="fas fa-bacteria"></i>
+                        <h3 class="mt-3">Nasıl Bulaşır?</h3>
+                    </div>
+                    <p>
+                        Hasta bireylerin öksürmeleri aksırmaları ile ortama saçılan damlacıkların solunması ile bulaşır.
+                        Hastaların solunum parçacıkları ile kirlenmiş yüzeylere dokunulduktan sonra ellerin yıkanmadan
+                        yüz, göz, burun veya ağıza götürülmesi ile de virüs alınabilir. Kirli ellerle göz, burun veya
+                        ağıza temas etmek risklidir.
+                    </p>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="features-top">
+                        <i class="fas fa-ambulance"></i>
+                        <h3 class="mt-3">Nasıl Tanı Konur?</h3>
+                    </div>
+                    <p>
+                        Yeni Koronavirüs tanısı için gerekli moleküler testler ülkemizde mevcuttur. Tanı testi sadece
+                        Halk Sağlığı Genel Müdürlüğü Ulusal Viroloji Referans Laboratuvarında ve belirlenmiş Halk
+                        Sağlığı Laboratuvarlarında yapılmaktadır.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- OUR HISTORY -->
+    <section id="ourHistory">
+        <div class="container my-5 py-5">
+            <div class="row">
+                <div class="col-lg-6">
+                    <img src="~/img/historyWallpaper.jpg" alt="Our History Img" class="img-fluid">
+                </div>
+                <div class="col-lg-6 text-center">
+                    <h2 class="mt-3 mb-4">HAKKIMIZDA</h2>
+                    <p>
+                        Aslında bir okul projesi olarak başladığımız bu yolda, Eylül ayından itibaren çalışarak gerekse
+                        web sitesi olsun gerekse mobil tarafında olsun uğraşlar vererek bu yola kadar ilerledik. Bu
+                        projeyi devam ettirerek daha güzel işlere ve yarınlara imza atmak istiyoruz.
+                    </p>
+                    <p>
+                        Bununla birlikte daha farklı projelerimiz de bulunmaktadır. Takım çalışmalarımız dışında kendi
+                        ilgi alanlarımıza da ait bireysel projelerimiz ve yaptğımız işler, ekibimiz ve ekip
+                        arkadaşlarımızın linkleri aşağıda takım alanında bulunmaktadır.
+                    </p>
+                    <a href="#team" type="submit" class="btn btn-outline-primary btn-block w-50">Takımımız</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- TEAM -->
+    <section id="team">
+        <div class="container my-5 py-5">
+            <div class="row justify-content-around">
+
+                <div class="col-md-3">
+                    <div class="card text-center">
+                        <div class="card-block">
+                            <img src="~/img/erayPP.jpg" alt="Eray Profil Resmi" class="img-fluid rounded-circle my-4">
+                            <h3>Eray Hamurlu</h3>
+                            <h5 class="text-muted">Flutter Developer</h5>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, cupiditate minus
+                                explicabo sint delectus incidunt nemo facere excepturi!
+                            </p>
+                            <div class="d-flex flex-row justify-content-center">
+                                <div class="p-4">
+                                    <a href="https://www.linkedin.com/in/eray-hamurlu/"><i class="fab fa-linkedin"></i></a>
+                                </div>
+                                <div class="p-4">
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                </div>
+                                <div class="p-4">
+                                    <a href="https://github.com/erayhamurlu"><i class="fab fa-github-square"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card text-center">
+                        <div class="card-block">
+                            <img src="~/img/dogukanPP.jpg" alt="Doğukan Profil Resmi"
+                                 class="img-fluid rounded-circle my-4">
+                            <h3>Doğukan Yolcuoğlu</h3>
+                            <h5 class="text-muted">Database Developer</h5>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, cupiditate minus
+                                explicabo sint delectus incidunt nemo facere excepturi!
+                            </p>
+                            <div class="d-flex flex-row justify-content-center">
+                                <div class="p-4">
+                                    <a href="https://www.linkedin.com/in/doğukan-yolcuoğlu-3510701a4/"><i class="fab fa-linkedin"></i></a>
+                                </div>
+                                <div class="p-4">
+                                    <a href="https://twitter.com/yolcuoglu09"><i class="fab fa-twitter"></i></a>
+                                </div>
+                                <div class="p-4">
+                                    <a href="https://github.com/dogukanyolcuoglu"><i class="fab fa-github-square"></i></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card text-center">
+                        <div class="card-block">
+                            <img src="~/img/mertPP.jpg" alt="Mert Profil Resmi" class="img-fluid rounded-circle my-4">
+                            <h3>Mert Güven</h3>
+                            <h5 class="text-muted">Flutter Developer</h5>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, cupiditate minus
+                                explicabo sint delectus incidunt nemo facere excepturi!
+                            </p>
+                            <div class="d-flex flex-row justify-content-center">
+                                <div class="p-4">
+                                    <a href="https://www.linkedin.com/in/mert-güven-8a0006177/"><i class="fab fa-linkedin"></i></a>
+                                </div>
+                                <div class="p-4">
+                                    <a href="https://twitter.com/merttgvvn"><i class="fab fa-twitter"></i></a>
+                                </div>
+                                <div class="p-4">
+                                    <a href="https://github.com/mertguven"><i class="fab fa-github-square"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-md-3">
+                    <div class="card text-center">
+                        <div class="card-block">
+                            <img src="~/img/habilPP.jpg" alt="Habil Profil Resmi" class="img-fluid rounded-circle my-4">
+                            <h3>Habil Yadigar</h3>
+                            <h5 class="text-muted">Back-end Developer</h5>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, cupiditate minus
+                                explicabo sint delectus incidunt nemo facere excepturi!
+                            </p>
+                            <div class="d-flex flex-row justify-content-center">
+                                <div class="p-4">
+                                    <a href="https://www.linkedin.com/in/habil-yadigar-86a805171/"><i class="fab fa-linkedin"></i></a>
+                                </div>
+                                <div class="p-4">
+                                    <a href="https://twitter.com/acipatlican98"><i class="fab fa-twitter"></i></a>
+                                </div>
+                                <div class="p-4">
+                                    <a href="https://github.com/habilyadigar"><i class="fab fa-github-square"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 ml-5">
+                    <div class="card text-center">
+                        <div class="card-block">
+                            <img src="~/img/beytoPP.jpg" alt="Beytullah Profil Resmi" class="img-fluid rounded-circle my-4">
+                            <h3>Beytullah Tiryaki</h3>
+                            <h5 class="text-muted">Full stack Developer</h5>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, cupiditate minus
+                                explicabo sint delectus incidunt nemo facere excepturi!
+                            </p>
+                            <div class="d-flex flex-row justify-content-center">
+                                <div class="p-4">
+                                    <a href="https://www.linkedin.com/in/beytullah-tiryaki-a98b98177/"><i class="fab fa-linkedin"></i></a>
+                                </div>
+                                <div class="p-4">
+                                    <a href="https://twitter.com/muptezelbeyto"><i class="fab fa-twitter"></i></a>
+                                </div>
+                                <div class="p-4">
+                                    <a href="https://github.com/tiryakibeytullah"><i class="fab fa-github-square"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- WHAT WE DO -->
+    <section id="whatWeDo" class="py-2">
+        <div class="container my-5 py-5">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h2>Ne yapıyoruz?</h2>
+                    <p class="text-white">
+                        Takım arkadaşlarımızla birlikte yaptığımız bazı projelerin nasıl ilerlediğini
+                        ve neler olduğunu Youtube'dan izlemek ister misiniz?
+                    </p>
+                    <a href="#" class="video" data-toggle="modal" data-target="#videoModal">
+                        <i class="far fa-play-circle fa-5x"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHAT WE DO SECTION MODEL-->
+    <div id="videoModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">SOA Proje Video</h4>
+                    <button type="button" class="close" data-dismiss="modal"> &times; </button>
+                </div>
+                <div class="modal-body">
+                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/NMre6IAAAiU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CASE STUDY -->
+    <section id="caseStudy">
+        <div class="container py-5">
+            <div class="row py-5">
+                <div class="col-lg-6">
+                    <div class="caseArea text-center">
+                        <i class="fas fa-shopping-cart"></i>
+                        <h3>MASKE SİPARİŞİ VERMEK İSTER MİSİN?</h3>
+                        <p>
+                            Çok kısa ve kolay bir şekilde, olduğun yerden tek tuşa tıklayarak sende maske siparişi vermek
+                            ister misin? Ayrıca bize geri dönüşüme katkı sağlamak adına atık maskeleri geri verdiğiniz taktirde indirim kuponları kazanarak bunları alışverişleriniz de kullanabileceksiniz. <br><h6><span>Her 100 adet kullanılmış maskeye 25 TL'lik indirim kuponu hediye !</span></h6>
+                        </p>
+                        <!-- <button type="button" class="btn btn-outline-primary">Sipariş Ver?</button> -->
+                        @if (@Session["token"] != null)
+                        {
+            <a href="#!" type="button" class="btn btn-outline-primary" data-toggle="modal"
+               data-target="#siparisVerBackdrop">Sipariş Ver?</a> }
+        else
+        {
+<a href="/Login/Index" type="button" class="btn btn-outline-primary" data-toggle="modal"
+   data-target="#loginBackdrop">Sipariş Ver?</a>}
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="caseImage">
+                        <img src="~/img/maskeSiparis.jpg" alt="Case Resim" class="img-fluid">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Maske Siparişi Verme Modal -->
+        <form method="post" id="siparisForm">
+            <div class="modal fade" id="siparisVerBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="staticBackdropLabel">Maske Siparişi</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="maskeAdetiDropDown" class="col-form-label">Maske paket adetini seçiniz :</label>
+                                <footer class="blockquote-footer" style="margin-top:-10px;">Paket adeti 5 TL'dir.</footer>
+                                @{ List<SelectListItem> listItems = new List<SelectListItem>();
+                                    for (int x = 1; x <= 20; x++)
+                                    {
+                                        listItems.Add(new SelectListItem
+                                        {
+                                            Text = x.ToString(),
+                                            Value = x.ToString()
+                                        });
+                                    } }
+                                @Html.DropDownListFor(x => x.addOrderRequestMessage.torderPiece, listItems, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                            <button type="submit" class="btn btn-primary">Sepete Ekle</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!-- Giriş Yap Modal -->
+        <form id="loginForm">
+            <div class="modal fade" id="loginBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="staticBackdropLabel">Giriş Yap</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="maskeAdetiDropDown" class="col-form-label">Sipariş verebilmek için önce giriş yapmanız gerek!</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                            <a type="modal" class="btn btn-primary" href="Login">Giriş Yap</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </section>
+
+    <!-- PORTFOLIO SECTION -->
+    <section id="portfolio">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-md-3 p-0 text-center">
+                    <a href="~/img/portfolio/1.jpg" data-lightbox="webTasarim" data-title="Portfolio 1 Açıklama">
+                        <div class="imageContainer">
+                            <img src="~/img/portfolio/1.jpg" alt="Portfolio 1" class="img-fluid">
+                            <div class="imageOverlay">
+                                <div class="imageText text-white">
+                                    <i class="fa fa-search-plus"></i>
+                                    <h3>Covid 19</h3>
+                                    <p><em>Covid 19 / Görseller</em></p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-3 p-0 text-center">
+                    <a href="~/img/portfolio/2.jpg" data-lightbox="webTasarim" data-title="Portfolio 2 Açıklama">
+                        <div class="imageContainer">
+                            <img src="~/img/portfolio/2.jpg" alt="Portfolio 2" class="img-fluid">
+                            <div class="imageOverlay">
+                                <div class="imageText text-white">
+                                    <i class="fa fa-search-plus"></i>
+                                    <h3>Covid 19</h3>
+                                    <p><em>Covid 19 / Görseller</em></p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-3 p-0 text-center">
+                    <a href="~/img/portfolio/3.jpg" data-lightbox="webTasarim" data-title="Portfolio 3 Açıklama">
+                        <div class="imageContainer">
+                            <img src="~/img/portfolio/3.jpg" alt="Portfolio 3" class="img-fluid">
+                            <div class="imageOverlay">
+                                <div class="imageText text-white">
+                                    <i class="fa fa-search-plus"></i>
+                                    <h3>Covid 19</h3>
+                                    <p><em>Covid 19 / Görseller</em></p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-3 p-0 text-center">
+                    <a href="~/img/portfolio/4.jpg" data-lightbox="webTasarim" data-title="Portfolio 4 Açıklama">
+                        <div class="imageContainer">
+                            <img src="~/img/portfolio/4.jpg" alt="Portfolio 4" class="img-fluid">
+                            <div class="imageOverlay">
+                                <div class="imageText text-white">
+                                    <i class="fa fa-search-plus"></i>
+                                    <h3>Covid 19</h3>
+                                    <p><em>Covid 19 / Görseller</em></p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-3 p-0 text-center">
+                    <a href="~/img/portfolio/5.jpg" data-lightbox="webTasarim" data-title="Portfolio 5 Açıklama">
+                        <div class="imageContainer">
+                            <img src="~/img/portfolio/5.jpg" alt="Portfolio 5" class="img-fluid">
+                            <div class="imageOverlay">
+                                <div class="imageText text-white">
+                                    <i class="fa fa-search-plus"></i>
+                                    <h3>Covid 19</h3>
+                                    <p><em>Covid 19 / Görseller</em></p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-3 p-0 text-center">
+                    <a href="~/img/portfolio/6.jpg" data-lightbox="webTasarim" data-title="Portfolio 6 Açıklama">
+                        <div class="imageContainer">
+                            <img src="~/img/portfolio/6.jpg" alt="Portfolio 6" class="img-fluid">
+                            <div class="imageOverlay">
+                                <div class="imageText text-white">
+                                    <i class="fa fa-search-plus"></i>
+                                    <h3>Covid 19</h3>
+                                    <p><em>Covid 19 / Görseller</em></p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-3 p-0 text-center">
+                    <a href="~/img/portfolio/7.jpg" data-lightbox="webTasarim" data-title="Portfolio 7 Açıklama">
+                        <div class="imageContainer">
+                            <img src="~/img/portfolio/7.jpg" alt="Portfolio 7" class="img-fluid">
+                            <div class="imageOverlay">
+                                <div class="imageText text-white">
+                                    <i class="fa fa-search-plus"></i>
+                                    <h3>Covid 19</h3>
+                                    <p><em>Covid 19 / Görseller</em></p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-3 p-0 text-center">
+                    <a href="~/img/portfolio/8.jpg" data-lightbox="webTasarim" data-title="Portfolio 8 Açıklama">
+                        <div class="imageContainer">
+                            <img src="~/img/portfolio/8.jpg" alt="Portfolio 8" class="img-fluid">
+                            <div class="imageOverlay">
+                                <div class="imageText text-white">
+                                    <i class="fa fa-search-plus"></i>
+                                    <h3>Covid 19</h3>
+                                    <p><em>Covid 19 / Görseller</em></p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT US SECTION -->
+    <section id="contact" class="py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2>BİZİMLE İLETİŞİME GEÇ</h2>
+                    <p>
+                        Herhangi bir aksaklık ya da sorun yaşadığını düşünüyorsan, aklına takılan ne olursa olsun anında
+                        bizimle iletişime geç.
+                    </p>
+                    <h4>E-Mail</h4>
+                    <p>mtsk@gmail.com</p>
+                    <h4>Telefon</h4>
+                    <p>0542 438 3131</p>
+                    <div class="my-4">
+                        <a href="#" class="p-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="p-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="p-2"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <form>
+                        <div class="form-group">
+                            <div class="input-group input-group-lg">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text text-white"><i class="fas fa-user fa-1x"></i></span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Name">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group input-group-lg">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text text-white">
+                                        <i class="fas fa-envelope fa-1x"></i>
+                                    </span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="E-Mail">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group input-group-lg">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text text-white">
+                                        <i class="fas fa-pencil-alt fa-1x"></i>
+                                    </span>
+                                </div>
+                                <textarea class="form-control" placeholder="Message" style="height:200px;"></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Gönder</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="py-3 bg-dark text-white">
+        <div class="container-fluid">
+            <div class="row text-center">
+                <div class="col-md-6 mx-auto">
+                    <p>Copyright &copy; 2020 MSTK</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a title="Yukarı Git" class="btnScrollUp" href="#" target="_top" style="display: inline;"></a>
+    <script src="js/jquery.js" type="text/JavaScript"></script>
+    <script src="js/bootstrap.js" type="text/JavaScript"></script>
+    <script src="js/lightbox.js" type="text/JavaScript"></script>
+</body>
+
+</html>

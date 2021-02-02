@@ -1,0 +1,38 @@
+﻿<Properties StartupConfiguration="{494198A8-C539-416B-BAB7-EE20450BA57C}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="mtsk/Views/Home/Index.cshtml">
+    <Files>
+      <File FileName="mtsk/Views/Home/Index.cshtml" Line="206" Column="68" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="mtsk" expanded="True">
+            <Node name="mtsk" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="css" expanded="True">
+                <Node name="sepetimCSS" expanded="True" />
+              </Node>
+              <Node name="Models" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="Home" expanded="True">
+                  <Node name="Index.cshtml" selected="True" />
+                </Node>
+                <Node name="Login" expanded="True" />
+                <Node name="MyBasket" expanded="True" />
+                <Node name="MyProfile" expanded="True" />
+                <Node name="Shared" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.mtsk PreferredExecutionTarget="/Applications/Opera.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

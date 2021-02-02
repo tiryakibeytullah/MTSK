@@ -1,0 +1,87 @@
+/* GENERAL STYLING */
+html {scroll-behavior: smooth;}
+*::-webkit-scrollbar {width: 3px; background-color: #eee;}
+*::-webkit-scrollbar-track {background-color: #ccc; width: 1px; border: 1px solid #fff;}
+*::-webkit-scrollbar-button {display: none;}
+*::-webkit-scrollbar-thumb {background-color: #000;}
+h3 {font-size: 13px; font-weight: 400;}
+h2 {font-size: 32px; font-weight: 400; color: #1886C7; text-transform: uppercase;}
+p {font-size: 14px;}
+.btnScrollUp {cursor: pointer; position: fixed;right: 20px;bottom: 10px;width: 40px;height: 40px;
+                background: url('../../img/btnYukarıGit.png') no-repeat center center; background-size: contain; }
+                
+
+/* CSS FOR NAVBAR*/
+.navbar { border-bottom: #1886C7 10px solid;}
+.navbar .navbar-brand { color: #1886C7; font-size: 22px; }
+.bg-dark { background-color :rgba(0,0,0, 1) !important; }
+.nav-link { transition: color .5s ease !important; }
+.nav-link:hover { color: #1886C7 !important; }
+.dropdown-menu { background-color :rgba(0,0,0, 1) !important; color: #1886C7; }
+
+/* HEADER SECTION */
+
+header { background: url('../../img/covid12.jpg') no-repeat center center fixed; height: 100vh;background-size: cover; }
+header .overlay { background-color: rgba(0,0,0,.7); }
+header .row { height: 100vh; }
+header span { color: #1886C7; }
+
+/* FEATURES SECTION */
+#features .fab, .fas { font-size: 35px; }
+.features-top { color: #1886C7; transition: color .5s ease !important; }
+.features-top:hover { color: #000; cursor: pointer; }
+
+/* OUR HISTORY SECTION */
+#ourHistory h2 { border-left: 6px solid #1886C7; padding-left: 30px; }
+#ourHistory p { text-align: justify; line-height: 25px; }
+
+/* TEAM SECTION */
+#team .card { border: none; cursor: pointer; }
+#team .col-md-3:hover { opacity: 0.8; transition: all 0.5s ease; }
+#team .fab { font-size: 22px; }
+#team .card-block img{
+    width: 250px !important;
+    height: 250px !important;
+    background-position: center !important;
+}
+
+/* WHAT WE DO SECTION */
+#whatWeDo { background: linear-gradient(
+    rgba(0,0,0, .7),
+    rgba(0,0,0, .7)
+    ),
+    url('../../img/maske.jpg') fixed center center no-repeat; 
+    background-size: cover;
+}
+
+/* CASE STUDY IMAGE */
+#caseStudy { background-color: #f4f5f9; line-height:30px;}
+#caseStudy .caseArea { background-color: #fff; margin: -70px -50px 0 0; padding: 40px; position: relative; z-index: 100; }
+#caseStudy h3 { font-size: 18px; margin: 30px 0 30px 0; color: #1886C7; text-transform: uppercase;}
+#caseStudy .fas { font-size: 40px; margin: 30px 0 30px 0; color: #1886C7; }
+#caseStudy .fas:hover { color: #000; cursor: pointer; }
+#caseStudy span { color: #1886C7; }
+#caseStudy .btn { margin-top: 15px; }
+
+/* PORTFOLIO SECTION */
+#portfolio { background-color: #f4f4f4; }
+#portfolio h3 { font-size: 16px; font-weight: 300; }
+#portfolio .fa { font-size: 24px; margin-bottom: 20px; }
+#portfolio p { font-size: 12px; font-weight: 300; }
+.imageContainer { position: relative; cursor: pointer; }
+.imageOverlay { position: absolute; top: 0; bottom: 0; left: 0; right: 0; height: 100%; background-color: #1886C7; opacity: 0; transition: all 1s ease;}
+.imageContainer:hover .imageOverlay { opacity: .7; }
+.imageText { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+
+/* CONTACT SECTION */
+#contact { background-color: #f4f4f4; }
+#contact .input-group-prepend span { width: 50px; background-color: #1886C7; }
+#contact h4 { font-size: 20px; font-weight: 400; color: #1886C7; }
+
+/* RESPONSIVE */
+@media screen and (max-width: 992px) {
+    .display-3 { font-size: 35px !important; }
+    #caseStudy .caseArea { margin-right: 0px; }
+    #caseStudy .caseImage { display: none; }
+    #contact { text-align: center; }
+}

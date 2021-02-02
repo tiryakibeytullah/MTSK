@@ -1,0 +1,69 @@
+/* GENERAL STYLING */
+html {scroll-behavior: smooth;}
+*::-webkit-scrollbar {width: 3px; background-color: #eee;}
+*::-webkit-scrollbar-track {background-color: #ccc; width: 1px; border: 1px solid #fff;}
+*::-webkit-scrollbar-button {display: none;}
+*::-webkit-scrollbar-thumb {background-color: #000;}
+p {font-size: 14px;}
+
+/* CSS FOR NAVBAR*/
+.navbar {
+    border-bottom: #1886C7 10px solid;
+}
+.navbar .navbar-brand { color: #1886C7; font-size: 22px; }
+.bg-dark { background-color :rgba(0,0,0, 1) !important; }
+.nav-link { transition: color .5s ease !important; }
+.nav-link:hover { color: #1886C7 !important; }
+.dropdown-menu { background-color :rgba(0,0,0, 1) !important; color: #1886C7; }
+
+/* CSS FOR CONTAINER */
+#sepetContainer { margin-top: 110px;}
+#sepetContainer  .col{
+    text-align: right;
+    font-size: 20px;
+    font-weight: unset;
+}
+#siparisAdi { font-size: 20px; }
+#satici { font-size: 15px;}
+#satici span { 
+    color: grey;
+}
+#adet span { color: grey;}
+#kargoDiv { 
+    color:#36B458;
+    margin-top: 3px;
+    font-size: 12px;
+}
+#yeniAdresEkleme {
+    color:#36B458;
+    font-size: 14px;
+}
+#siparisIslemleri {
+    margin-top: 10px;
+}
+#siparisIslemleri a{
+    font-size: 15px;
+    color: grey;
+}
+#adresSecenekleri .card{
+    width: 15rem;
+}
+#odenecekTutar {
+    font-weight: bold;
+}
+/* Icon'ların üzerine geldiğimizde olucak işlemler. */
+.fas { color: #1886C7; transition: color .5s ease !important; }
+.fas:hover { color: #000; cursor: pointer; }
+
+@media (min-width: 1200px) { 
+    #siparisOzet{
+        position: sticky; top: 75px;
+    }
+    #indirimKuponu{
+        position: sticky; top: 375px;
+    }
+}
+
+
+
+
